@@ -1,0 +1,15 @@
+{
+  "name": "Morael Coin",
+  "short_name": "Morael Coin",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#09080e",
+  "theme_color": "#171326",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

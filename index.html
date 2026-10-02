@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<title>Morael Coin</title>
+<style>
+body {
+ margin:0; min-height:100vh; display:grid; place-items:center;
+ background:radial-gradient(circle,#30264c,#09080e 65%);
+ color:#eeeaff; font-family:Georgia,serif;
+}
+.app{text-align:center}
+h1{letter-spacing:.08em}
+#coin{
+ width:min(75vw,350px); border-radius:50%;
+ filter:drop-shadow(0 20px 30px #000);
+}
+button{
+ margin-top:25px; padding:15px 35px; border-radius:999px;
+ background:#17121f; color:#f5e7bd;
+ border:1px solid #c4a45a;
+ font-size:18px;
+}
+.spinning{
+ animation:spin 2.2s cubic-bezier(.12,.72,.15,1);
+}
+@keyframes spin{
+0%{transform:rotateY(0) scaleX(1)}
+10%{transform:rotateY(180deg) scaleX(.1)}
+25%{transform:rotateY(450deg) scaleX(1)}
+40%{transform:rotateY(720deg) scaleX(.1)}
+60%{transform:rotateY(990deg) scaleX(1)}
+80%{transform:rotateY(1260deg) scaleX(.1)}
+100%{transform:rotateY(1440deg) scaleX(1)}
+}
+#result{margin-top:15px;font-size:22px}
+</style>
+</head>
+<body>
+<div class="app">
+<h1>Мораэль / Алаараэль</h1>
+<img id="coin" src="assets/morael.png">
+<br>
+<button onclick="flip()">Подбросить монетку</button>
+<div id="result"></div>
+</div>
+
+<script>
+const coin=document.getElementById("coin");
+const result=document.getElementById("result");
+
+function flip(){
+ const morael=Math.random()<0.5;
+ coin.classList.remove("spinning");
+ void coin.offsetWidth;
+ coin.classList.add("spinning");
+
+ setTimeout(()=>{
+   coin.src=morael?"assets/morael.png":"assets/alaarael.png";
+   result.innerHTML=morael?
+   "Выпала Мораэль ☽":
+   "Выпала Алаараэль ✦";
+ },2200);
+}
+
+if("serviceWorker" in navigator){
+ navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+</body>
+</html>
